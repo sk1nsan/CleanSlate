@@ -22,6 +22,10 @@ reddit = praw.Reddit(
 def home():
     return render_template('index.html')
 
+@app.route('/services')
+def services():
+    return render_template('services.html')
+
 @app.route('/reddit_auth')
 def reddit_auth():
     auth_url = reddit.auth.url(scopes=["identity"], state="random_state", duration="permanent")

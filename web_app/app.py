@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from flask import Flask, request, redirect, render_template, url_for
 import praw
+from datetime import datetime
+import time
 
 app = Flask(__name__)
 
@@ -58,10 +60,12 @@ def reddit_callback():
 @app.route('/delete_comments', methods=['POST'])
 def delete_comments():
     selected_date = request.form['selected_date']
+    selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
+    selected_timestamp = time.mktime(selected_datetime.timetuple())
     user = reddit.user.me()
     comments = reddit.user.me().comments.new(limit=None)
     for comment in comments:
-      if comment.created_utc < selected_date:
+      if comment.created_utc < selected_timestamp:
         comment.delete()
     return f"Deleted comments before {selected_date} for user {user.name}."
 

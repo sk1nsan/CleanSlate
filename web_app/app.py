@@ -5,10 +5,15 @@ import praw
 app = Flask(__name__)
 
 # todo: secure way to handle client id & secret
-client_id="-9mNQLNIHMFPHlR1mqOomQ"
-client_secret="CiaI_lwcRdSPTEi7JMsf4sRtilby1Q"
+client_id = "-9mNQLNIHMFPHlR1mqOomQ"
+client_secret = "CiaI_lwcRdSPTEi7JMsf4sRtilby1Q"
 user_agent = "CleanSlate"
 redirect_uri = "http://localhost:8080/reddit_callback"
+all_scopes = ['creddits', 'edit', 'flair', 'history', 'identity', 'modconfig',
+              'modcontributors', 'modflair', 'modlog', 'modothers', 'modposts',
+              'modself', 'modwiki', 'mysubreddits', 'privatemessages', 'read',
+              'report', 'save', 'submit', 'subscribe', 'vote', 'wikiedit',
+              'wikiread']
 
 reddit = praw.Reddit(
     client_id=client_id,
@@ -22,27 +27,32 @@ reddit = praw.Reddit(
 def home():
     return render_template('index.html')
 
+
 @app.route('/services')
 def services():
     return render_template('services.html')
 
+
 @app.route('/reddit_auth')
 def reddit_auth():
-    auth_url = reddit.auth.url(scopes=["identity"], state="random_state", duration="permanent")
+    auth_url = reddit.auth.url(scopes=all_scopes,
+                               state="random_state", duration="permanent")
     return redirect(auth_url)
+
 
 @app.route('/reddit_callback')
 def reddit_callback():
     code = request.args.get('code')
     if code:
         try:
-            access_token = reddit.auth.authorize(code)
+            reddit.auth.authorize(code)
             user = reddit.user.me()
             return f"Authenticated as: {user.name}"
         except Exception as e:
             return f"Error: {str(e)}"
     else:
         return "Authorization failed. No code found."
+
 
 if __name__ == '__main__':
     app.run(port=8080)

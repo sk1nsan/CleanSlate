@@ -4,6 +4,7 @@ import praw
 
 app = Flask(__name__)
 
+
 # todo: secure way to handle client id & secret
 client_id = "-9mNQLNIHMFPHlR1mqOomQ"
 client_secret = "CiaI_lwcRdSPTEi7JMsf4sRtilby1Q"
@@ -47,11 +48,22 @@ def reddit_callback():
         try:
             reddit.auth.authorize(code)
             user = reddit.user.me()
-            return f"Authenticated as: {user.name}"
+            return render_template('reddit_select_date.html', user=user.name)
         except Exception as e:
             return f"Error: {str(e)}"
     else:
         return "Authorization failed. No code found."
+
+
+@app.route('/delete_comments', methods=['POST'])
+def delete_comments():
+    selected_date = request.form['selected_date']
+    user = reddit.user.me()
+    comments = reddit.user.me().comments.new(limit=None)
+    for comment in comments:
+      if comment.created_utc < selected_date:
+        comment.delete()
+    return f"Deleted comments before {selected_date} for user {user.name}."
 
 
 if __name__ == '__main__':

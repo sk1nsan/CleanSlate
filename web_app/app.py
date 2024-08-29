@@ -59,6 +59,7 @@ def reddit_callback():
 
 @app.route('/delete_comments', methods=['POST'])
 def delete_comments():
+    #todo: hanldle errors
     selected_date = request.form['selected_date']
     selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
     selected_timestamp = time.mktime(selected_datetime.timetuple())
@@ -67,6 +68,7 @@ def delete_comments():
     for comment in comments:
       if comment.created_utc < selected_timestamp:
         comment.delete()
+    #todo: preview of comments before deletion
     return f"Deleted comments before {selected_date} for user {user.name}."
 
 

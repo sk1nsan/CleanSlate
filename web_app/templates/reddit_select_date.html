@@ -11,19 +11,19 @@
         <nav>
             <div class="logo">CleanSlate</div>
             <ul class="nav-links">
-                <li><a href="../templates/index.html">Home</a></li>
-                <li><a href="../templates/services.html">Services</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="date-selection">
-        <h1>Delete Reddit Comments</h1>
-        <p>{{ user }}, select a date to delete comments before:</p>
-        <form action="{{ url_for('delete_comments') }}" method="POST" id="dateForm">
+        <h1>Delete Your Reddit Comments and Posts</h1>
+        <p>{{ user }}, select a date to delete comments and posts before:</p>
+        <form action="{{ url_for('reddit_delete') }}" method="POST" id="dateForm">
             <input type="date" id="selected_date" name="selected_date" required>
-            <button type="submit" class="cta-button">Delete Comments</button>
+            <button type="submit" class="cta-button">Delete</button>
         </form>
         <div id="error-message" class="error-message"></div>
     </section>

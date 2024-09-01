@@ -57,19 +57,23 @@ def reddit_callback():
         return "Authorization failed. No code found."
 
 
-@app.route('/delete_comments', methods=['POST'])
-def delete_comments():
+@app.route('/reddit_delete', methods=['POST'])
+def reddit_delete():
     # todo: hanldle errors
     selected_date = request.form['selected_date']
     selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
     selected_timestamp = time.mktime(selected_datetime.timetuple())
     user = reddit.user.me()
-    comments = reddit.user.me().comments.new(limit=None)
+    comments = user.comments.new(limit=None)
+    submissions = user.submissions.new(limit=None)
     for comment in comments:
         if comment.created_utc < selected_timestamp:
             comment.delete()
+    for submission in submissions:
+        if submission.created_utc < selected_timestamp:
+            submission.delete()
     # todo: preview of comments before deletion
-    return f"Deleted comments before {selected_date} for user {user.name}."
+    return f"Deleted comments and posts before {selected_date} for user {user.name}."
 
 
 if __name__ == '__main__':

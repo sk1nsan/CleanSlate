@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanSlate - Choose Your Platform</title>
+    <link rel="stylesheet" href="../static/styles/services.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">CleanSlate</div>
+            <ul class="nav-links">
+                <li><a href="../templates/index.html">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Select Your Platform</h1>
+        <p>Choose the platform you want to clean up.</p>
+    </section>
+
+    <section id="services" class="services">
+        <div class="service-card reddit">
+            <h2>Reddit</h2>
+            <p>Manage and delete your Reddit posts effortlessly.</p>
+            <button onclick="location.href='/reddit-cleanup';">Select Reddit</button>
+        </div>
+        <div class="service-card discord">
+            <h2>Discord</h2>
+            <p>Manage and delete your Discord messages with ease.</p>
+            <button onclick="location.href='/discord-cleanup';">Select Discord</button>
+        </div>
+        <div class="service-card twitter">
+            <h2>Twitter</h2>
+            <p>Manage and delete your Twitter tweets seamlessly.</p>
+            <button onclick="location.href='/twitter-cleanup';">Select Twitter</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
+    </footer>
+
+    <script src="../static/scripts/script.js"></script>
+</body>
+</html>

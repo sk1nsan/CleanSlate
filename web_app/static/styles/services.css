@@ -52,7 +52,7 @@ nav {
 }
 
 .hero {
-    height: 45.7853vh;
+    height: 53vh;
     background: linear-gradient(135deg, #1b263b 0%, #8e24aa 100%); /* Darker gradient */
     display: flex;
     flex-direction: column;

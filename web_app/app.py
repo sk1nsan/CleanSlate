@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, request, redirect, render_template, url_for
+from flask import Flask, request, redirect, render_template, url_for, make_response
 import praw
 from datetime import datetime
 import time
@@ -25,6 +25,10 @@ reddit = praw.Reddit(
     redirect_uri=redirect_uri,
 )
 
+preview = {'reddit': {'comment': [], 'post': []},
+           'discord': None,
+           'twitter': None}
+
 
 @app.route('/')
 def home():
@@ -45,6 +49,7 @@ def reddit_auth():
 
 @app.route('/reddit_callback')
 def reddit_callback():
+    # handle GET method
     code = request.args.get('code')
     if code:
         try:
@@ -57,23 +62,44 @@ def reddit_callback():
         return "Authorization failed. No code found."
 
 
-@app.route('/reddit_delete', methods=['POST'])
-def reddit_delete():
+@app.route('/preview_<platform>', methods=['POST'])
+def preview_platform(platform):
+    if platform == 'reddit':
+        preview['reddit']['comment'] = []
+        preview['reddit']['post'] = []
+        selected_date = request.form['selected_date']
+        selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
+        selected_timestamp = time.mktime(selected_datetime.timetuple())
+        user = reddit.user.me()
+        comments = user.comments.new(limit=None)
+        submissions = user.submissions.new(limit=None)
+        for comment in comments:
+            if comment.created_utc < selected_timestamp:
+                preview['reddit']['comment'].append(comment)
+        for submission in submissions:
+            if submission.created_utc < selected_timestamp:
+                preview['reddit']['post'].append(submission)
+        return render_template('preview.html',
+                               preview_reddit=preview['reddit'])
+    else:
+        make_response("Platform doesn't exist", 404)
+
+
+@app.route('/delete_<platform>', methods=['POST'])
+def delete_platform(platform):
     # todo: hanldle errors
-    selected_date = request.form['selected_date']
-    selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
-    selected_timestamp = time.mktime(selected_datetime.timetuple())
-    user = reddit.user.me()
-    comments = user.comments.new(limit=None)
-    submissions = user.submissions.new(limit=None)
-    for comment in comments:
-        if comment.created_utc < selected_timestamp:
+    # handle GET method (using browser)
+    if (platform == 'reddit'):
+        for comment in preview['reddit']['comment']:
             comment.delete()
-    for submission in submissions:
-        if submission.created_utc < selected_timestamp:
+        for submission in preview['reddit']['post']:
             submission.delete()
-    # todo: preview of comments before deletion
-    return f"Deleted comments and posts before {selected_date} for user {user.name}."
+        preview['reddit']['comment'] = []
+        preview['reddit']['post'] = []
+        user = reddit.user.me()
+        return f"Deleted comments and posts for user {user.name}."
+    else:
+        make_response("Platform doesn't exist", 404)
 
 
 if __name__ == '__main__':

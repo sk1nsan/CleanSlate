@@ -19,19 +19,30 @@
     </header>
 
     <section class="date-selection">
-        <h1>Delete Reddit Comments</h1>
-        <p>{{ user }}, select a date to delete comments before:</p>
-        <form action="{{ url_for('preview_platform', platform='reddit') }}" method="POST" id="dateForm">
-            <input type="date" id="selected_date" name="selected_date" required>
-            <button type="submit" class="cta-button">Preview</button>
+    {% if preview_reddit %} 
+        {% set platform = 'reddit' %}
+        <h1>Preview Reddit</h1>
+        {% if preview_reddit['post'] %}
+            <h2>Posts:</h2>
+            {% for post in preview_reddit['post'] %}
+                <p>{{ post.title }}</p>
+            {% endfor %}
+        {% endif %}
+        {% if preview_reddit['comment'] %}
+            <h2>Comments:</h2>
+            {% for comment in preview_reddit['comment'] %}
+                <p>{{ comment.body }}</p>
+            {% endfor %}
+        {% endif %}
+        <form action="{{ url_for('delete_platform', platform=platform) }}" method="POST" id="deleteForm">
+            <button type="submit" class="cta-button">Delete</button>
         </form>
         <div id="error-message" class="error-message"></div>
+    {% endif %}
     </section>
 
     <footer>
         <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
     </footer>
-
-    <script src="../static/scripts/reddit_select_date.js"></script>
 </body>
 </html>

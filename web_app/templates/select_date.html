@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CleanSlate - Delete Reddit Comments</title>
-    <link rel="stylesheet" href="../static/styles/reddit_select_date.css">
+    <link rel="stylesheet" href="../static/styles/select_date.css">
 </head>
 <body>
     <header>
@@ -19,8 +19,8 @@
     </header>
 
     <section class="date-selection">
-        <h1>Delete Reddit Comments</h1>
-        <p>{{ user }}, select a date to delete comments before:</p>
+        <h1>Delete Reddit Comments and Posts</h1>
+        <p>{{ user }}, select a date to delete before:</p>
         <form action="{{ url_for('preview_platform', platform='reddit') }}" method="POST" id="dateForm">
             <input type="date" id="selected_date" name="selected_date" required>
             <button type="submit" class="cta-button">Preview</button>
@@ -32,6 +32,6 @@
         <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
     </footer>
 
-    <script src="../static/scripts/reddit_select_date.js"></script>
+    <script src="../static/scripts/select_date.js"></script>
 </body>
 </html>

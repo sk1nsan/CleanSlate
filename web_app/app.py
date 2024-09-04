@@ -55,7 +55,7 @@ def reddit_callback():
         try:
             reddit.auth.authorize(code)
             user = reddit.user.me()
-            return render_template('reddit_select_date.html', user=user.name)
+            return render_template('select_date.html', user=user.name)
         except Exception as e:
             return f"Error: {str(e)}"
     else:

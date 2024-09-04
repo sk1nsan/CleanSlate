@@ -68,6 +68,7 @@ def preview_platform(platform):
         preview['reddit']['comment'] = []
         preview['reddit']['post'] = []
         selected_date = request.form['selected_date']
+        # todo: add dates with the preview
         selected_datetime = datetime.strptime(selected_date, '%Y-%m-%d')
         selected_timestamp = time.mktime(selected_datetime.timetuple())
         user = reddit.user.me()

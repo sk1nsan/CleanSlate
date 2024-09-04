@@ -82,7 +82,7 @@ def preview_platform(platform):
         return render_template('preview.html',
                                preview_reddit=preview['reddit'])
     else:
-        make_response("Platform doesn't exist", 404)
+        return make_response("Platform doesn't exist", 404)
 
 
 @app.route('/delete_<platform>', methods=['POST'])
@@ -96,10 +96,9 @@ def delete_platform(platform):
             submission.delete()
         preview['reddit']['comment'] = []
         preview['reddit']['post'] = []
-        user = reddit.user.me()
-        return f"Deleted comments and posts for user {user.name}."
+        return "Deletion completed"
     else:
-        make_response("Platform doesn't exist", 404)
+        return make_response("Platform doesn't exist", 404)
 
 
 if __name__ == '__main__':

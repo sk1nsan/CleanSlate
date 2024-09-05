@@ -1,20 +1,22 @@
 /* General Styling */
-body {
-    font-family: 'Poppins', sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
     background-color: #f0f4f8;
     color: #333;
 }
 
 header {
-    background-color: rgba(48, 0, 117, 0.85); /* Purple with 85% opacity */
+    background-color: rgba(48, 0, 117, 0.85);
     color: #fff;
     padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -51,15 +53,18 @@ nav {
     color: #ffab00;
 }
 
-/* Preview Section */
+/* Main content area */
 .preview {
+    flex: 1;
     padding: 120px 20px;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .preview h1 {
     font-size: 36px;
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -78,7 +83,6 @@ nav {
     font-size: 24px;
     color: #8e24aa;
     margin-bottom: 15px;
-    text-align: center;
 }
 
 .post-item, .comment-item {
@@ -95,15 +99,7 @@ nav {
     transform: translateY(-5px);
 }
 
-.post-item p, .comment-item p {
-    margin: 0;
-    color: #333;
-    font-size: 16px;
-}
-
-/* Call to Action Button */
 .cta-button {
-    display: block;
     background-color: #ff6f00;
     color: white;
     font-weight: bold;
@@ -111,7 +107,6 @@ nav {
     border: none;
     border-radius: 25px;
     text-align: center;
-    margin: 20px auto;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -134,6 +129,7 @@ footer {
     padding: 10px 0;
     text-align: center;
     font-size: 14px;
+    margin-top: auto;
 }
 
 footer p {

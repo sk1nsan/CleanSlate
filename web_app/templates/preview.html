@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanSlate - Delete Reddit Comments</title>
-    <link rel="stylesheet" href="../static/styles/reddit_select_date.css">
+    <title>CleanSlate - Preview Reddit Comments</title>
+    <link rel="stylesheet" href="../static/styles/preview.css">
 </head>
 <body>
     <header>
@@ -18,31 +18,47 @@
         </nav>
     </header>
 
-    <section class="date-selection">
-    {% if preview_reddit %} 
-        {% set platform = 'reddit' %}
-        <h1>Preview Reddit</h1>
-        {% if preview_reddit['post'] %}
-            <h2>Posts:</h2>
-            {% for post in preview_reddit['post'] %}
-                <p>{{ post.title }}</p>
-            {% endfor %}
-        {% endif %}
-        {% if preview_reddit['comment'] %}
-            <h2>Comments:</h2>
-            {% for comment in preview_reddit['comment'] %}
-                <p>{{ comment.body }}</p>
-            {% endfor %}
-        {% endif %}
-        <form action="{{ url_for('delete_platform', platform=platform) }}" method="POST" id="deleteForm">
-            <button type="submit" class="cta-button">Delete</button>
+    <section class="preview-section">
+        <h1>Preview Reddit Deletions</h1>
+        <p>Review the posts and comments below before proceeding with deletion.</p>
+
+        {% if preview_reddit %}
+        <div class="preview-container">
+            {% if preview_reddit['post'] %}
+            <div class="preview-posts">
+                <h2>Posts:</h2>
+                <ul>
+                    {% for post in preview_reddit['post'] %}
+                    <li>{{ post.title }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if preview_reddit['comment'] %}
+            <div class="preview-comments">
+                <h2>Comments:</h2>
+                <ul>
+                    {% for comment in preview_reddit['comment'] %}
+                    <li>{{ comment.body }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <form action="{{ url_for('delete_platform', platform='reddit') }}" method="POST" id="deleteForm">
+            <button type="submit" class="cta-button">Delete Selected</button>
         </form>
         <div id="error-message" class="error-message"></div>
-    {% endif %}
+        {% endif %}
     </section>
 
     <footer>
         <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
     </footer>
+
+    <script src="../static/scripts/preview.js"></script>
 </body>
 </html>
+

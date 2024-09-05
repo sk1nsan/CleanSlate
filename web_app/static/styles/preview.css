@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: rgba(48, 0, 117, 0.85); /* Purple with 85% opacity */
+    background-color: rgba(48, 0, 117, 0.85);
     color: #fff;
     padding: 10px 0;
     position: fixed;
@@ -51,45 +51,59 @@ nav {
     color: #ffab00;
 }
 
-.date-selection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.preview-section {
+    margin-top: 80px;
+    padding: 40px 20px;
     text-align: center;
-    height: 80vh;
-    margin-top: 60px;
 }
 
-.date-selection h1 {
-    font-size: 48px;
+h1 {
+    font-size: 36px;
     margin-bottom: 10px;
 }
 
-.date-selection p {
-    font-size: 20px;
-    margin-bottom: 30px;
+.preview-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
 }
 
-.date-selection input[type="date"] {
+.preview-posts, .preview-comments {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #f0f4f8;
+    margin: 5px 0;
     padding: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 200px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cta-button {
     background-color: #ffab00;
     color: #fff;
-    padding: 15px 30px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 30px;
+    border-radius: 20px;
     font-weight: bold;
-    text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
+    margin-top: 30px;
 }
 
 .cta-button:hover {
@@ -101,6 +115,7 @@ nav {
     color: red;
     font-size: 14px;
     margin-top: 10px;
+    display: none;
 }
 
 footer {
@@ -109,11 +124,9 @@ footer {
     padding: 10px 0;
     text-align: center;
     font-size: 14px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
 
 footer p {
     margin: 0;
 }
+

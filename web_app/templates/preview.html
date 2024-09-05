@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanSlate - Preview Reddit Comments</title>
+    <title>CleanSlate - Delete Reddit Comments</title>
     <link rel="stylesheet" href="../static/styles/preview.css">
 </head>
 <body>
@@ -18,47 +18,42 @@
         </nav>
     </header>
 
-    <section class="preview-section">
-        <h1>Preview Reddit Deletions</h1>
-        <p>Review the posts and comments below before proceeding with deletion.</p>
-
-        {% if preview_reddit %}
-        <div class="preview-container">
-            {% if preview_reddit['post'] %}
-            <div class="preview-posts">
-                <h2>Posts:</h2>
-                <ul>
-                    {% for post in preview_reddit['post'] %}
-                    <li>{{ post.title }}</li>
-                    {% endfor %}
-                </ul>
+    <section class="preview">
+        {% if preview_reddit %} 
+            {% set platform = 'reddit' %}
+            <h1>Preview Reddit Posts & Comments</h1>
+            <div class="content">
+                {% if preview_reddit['post'] %}
+                    <div class="posts">
+                        <h2>Posts:</h2>
+                        {% for post in preview_reddit['post'] %}
+                            <div class="post-item">
+                                <p>{{ post.title }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if preview_reddit['comment'] %}
+                    <div class="comments">
+                        <h2>Comments:</h2>
+                        {% for comment in preview_reddit['comment'] %}
+                            <div class="comment-item">
+                                <p>{{ comment.body }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
-            {% endif %}
-
-            {% if preview_reddit['comment'] %}
-            <div class="preview-comments">
-                <h2>Comments:</h2>
-                <ul>
-                    {% for comment in preview_reddit['comment'] %}
-                    <li>{{ comment.body }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
-        </div>
-
-        <form action="{{ url_for('delete_platform', platform='reddit') }}" method="POST" id="deleteForm">
-            <button type="submit" class="cta-button">Delete Selected</button>
-        </form>
-        <div id="error-message" class="error-message"></div>
+            <form action="{{ url_for('delete_platform', platform=platform) }}" method="POST" id="deleteForm">
+                <button type="submit" class="cta-button">Delete All</button>
+            </form>
+            <div id="error-message" class="error-message"></div>
         {% endif %}
     </section>
 
     <footer>
         <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
     </footer>
-
-    <script src="../static/scripts/preview.js"></script>
 </body>
 </html>
 

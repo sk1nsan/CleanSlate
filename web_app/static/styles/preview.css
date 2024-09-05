@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    background-color: rgba(48, 0, 117, 0.85);
+    background-color: rgba(48, 0, 117, 0.85); /* Purple with 85% opacity */
     color: #fff;
     padding: 10px 0;
     position: fixed;
@@ -51,73 +51,83 @@ nav {
     color: #ffab00;
 }
 
-.preview-section {
-    margin-top: 80px;
-    padding: 40px 20px;
+/* Preview Section */
+.preview {
+    padding: 120px 20px;
+    background-color: #fff;
+}
+
+.preview h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.preview .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.posts, .comments {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.posts h2, .comments h2 {
+    font-size: 24px;
+    color: #8e24aa;
+    margin-bottom: 15px;
     text-align: center;
 }
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.preview-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 30px;
-}
-
-.preview-posts, .preview-comments {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 45%;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #f0f4f8;
-    margin: 5px 0;
+.post-item, .comment-item {
+    background-color: #f8f9fa;
+    border-left: 5px solid #8e24aa;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
+.post-item:hover, .comment-item:hover {
+    transform: translateY(-5px);
+}
+
+.post-item p, .comment-item p {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Call to Action Button */
 .cta-button {
-    background-color: #ffab00;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
+    display: block;
+    background-color: #ff6f00;
+    color: white;
     font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    margin: 20px auto;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    margin-top: 30px;
 }
 
 .cta-button:hover {
-    background-color: #ff6f00;
-    transform: translateY(-5px);
+    background-color: #ffab00;
+    transform: translateY(-3px);
 }
 
 .error-message {
     color: red;
     font-size: 14px;
-    margin-top: 10px;
-    display: none;
+    text-align: center;
 }
 
+/* Footer Styling */
 footer {
     background-color: #2a2a2a;
     color: #fff;
@@ -128,5 +138,27 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .preview h1 {
+        font-size: 28px;
+    }
+
+    .post-item p, .comment-item p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .preview h1 {
+        font-size: 24px;
+    }
+
+    .cta-button {
+        width: 100%;
+        padding: 10px;
+    }
 }
 

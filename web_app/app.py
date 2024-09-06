@@ -97,7 +97,7 @@ def delete_platform(platform):
             submission.delete()
         preview['reddit']['comment'] = []
         preview['reddit']['post'] = []
-        return "Deletion completed"
+        return render_template('deletion_completed.html')
     else:
         return make_response("Platform doesn't exist", 404)
 

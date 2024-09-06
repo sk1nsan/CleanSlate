@@ -1,0 +1,84 @@
+/* General Styling */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.success-message {
+    background-color: #fff;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.success-message h1 {
+    font-size: 36px;
+    color: #4caf50;
+    margin-bottom: 20px;
+}
+
+.success-message p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.cta-button {
+    background-color: #ff6f00;
+    color: white;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.cta-button.secondary {
+    background-color: #8e24aa;
+}
+
+.cta-button:hover {
+    background-color: #ffab00;
+    transform: translateY(-3px);
+}
+
+.cta-button.secondary:hover {
+    background-color: #a54ebd;
+}
+
+footer {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+

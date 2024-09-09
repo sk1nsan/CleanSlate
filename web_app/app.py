@@ -3,13 +3,16 @@ from flask import Flask, request, redirect, render_template, url_for, make_respo
 import praw
 from datetime import datetime
 import time
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+load_dotenv()
 
-# todo: secure way to handle client id & secret
-client_id = "-9mNQLNIHMFPHlR1mqOomQ"
-client_secret = "CiaI_lwcRdSPTEi7JMsf4sRtilby1Q"
+
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
 user_agent = "CleanSlate"
 redirect_uri = "http://localhost:8080/reddit_callback"
 all_scopes = ['creddits', 'edit', 'flair', 'history', 'identity', 'modconfig',

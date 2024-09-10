@@ -3,16 +3,17 @@ from flask import Flask, request, redirect, render_template, url_for, make_respo
 import praw
 from datetime import datetime
 import time
-# import os
-# from dotenv import load_dotenv
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# load_dotenv()
+# Load environment variables
+load_dotenv()
 
-
-#client_id = os.getenv('CLIENT_ID')
-#client_secret = os.getenv('CLIENT_SECRET')
+# Get client ID and secret from environment variables
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
 user_agent = "CleanSlate"
 redirect_uri = "http://localhost:8080/reddit_callback"
 all_scopes = ['creddits', 'edit', 'flair', 'history', 'identity', 'modconfig',
@@ -21,9 +22,12 @@ all_scopes = ['creddits', 'edit', 'flair', 'history', 'identity', 'modconfig',
               'report', 'save', 'submit', 'subscribe', 'vote', 'wikiedit',
               'wikiread']
 
+# Initialize Reddit instance with environment variables
 reddit = praw.Reddit(
+    client_id=client_id,
+    client_secret=client_secret,
     user_agent=user_agent,
-    redirect_uri=redirect_uri,
+    redirect_uri=redirect_uri
 )
 
 preview = {'reddit': {'comment': [], 'post': []},

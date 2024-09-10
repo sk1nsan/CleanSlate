@@ -18,8 +18,8 @@
         </nav>
     </header>
 
-        <section class="preview">
-        {% if preview_reddit %}
+    <section class="preview">
+        {% if preview_reddit %} 
             {% set platform = 'reddit' %}
             <h1>Preview Reddit Posts & Comments</h1>
             <div class="content">
@@ -42,17 +42,16 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                    <form action="{{ url_for('delete_platform', platform=platform) }}" method="POST" id="deleteForm">
+                        <button type="submit" class="cta-button">Delete All</button>
+                    </form>
+                    <div id="error-message" class="error-message"></div>
                     {% else %}
-		    	<h2 style="text-align: center;">There is NO post to delete.</h2>
+                        <h2>There is NO post to delete.</h2>
                 {% endif %}
             </div>
-            <form action="{{ url_for('delete_platform', platform=platform) }}" method="POST" id="deleteForm">
-                <button type="submit" class="cta-button">Delete All</button>
-            </form>
-            <div id="error-message" class="error-message"></div>
         {% endif %}
     </section>
-
     <footer>
         <p>&copy; 2024 CleanSlate | Made with &#128151;</p>
     </footer>

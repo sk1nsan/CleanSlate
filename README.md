@@ -1,5 +1,3 @@
----
-
 # CleanSlate
 
 **CleanSlate** is a tool designed to help users reclaim their online privacy by effortlessly removing digital footprints. With Cleanslate, you can delete posts and comments across multiple social media platforms, ensuring your online presence reflects your current values and preferences. Take control of your digital identity and enjoy peace of mind by managing what you share online.

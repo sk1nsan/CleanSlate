@@ -22,7 +22,7 @@ all_scopes = ['creddits', 'edit', 'flair', 'history', 'identity', 'modconfig',
               'report', 'save', 'submit', 'subscribe', 'vote', 'wikiedit',
               'wikiread']
 
-# Initialize Reddit instance with environment variables
+# Initialize Reddit instance
 reddit = praw.Reddit(
     client_id=client_id,
     client_secret=client_secret,
@@ -37,16 +37,19 @@ preview = {'reddit': {'comment': [], 'post': []},
 
 @app.route('/')
 def home():
+    """ displays index HTML page """
     return render_template('index.html')
 
 
 @app.route('/services')
 def services():
+    """ displays a HTML page with all the platforms we service """
     return render_template('services.html')
 
 
 @app.route('/reddit_auth')
 def reddit_auth():
+    """ handles the reddit authentication """
     auth_url = reddit.auth.url(scopes=all_scopes,
                                state="random_state", duration="permanent")
     return redirect(auth_url)
@@ -54,7 +57,7 @@ def reddit_auth():
 
 @app.route('/reddit_callback')
 def reddit_callback():
-    # handle GET method
+    """ handles the reddit callback """
     code = request.args.get('code')
     if code:
         try:
@@ -69,6 +72,7 @@ def reddit_callback():
 
 @app.route('/preview_<platform>', methods=['POST'])
 def preview_platform(platform):
+    """ previews the posts and comments to be deleted """
     if platform == 'reddit':
         preview['reddit']['comment'] = []
         preview['reddit']['post'] = []
@@ -93,8 +97,9 @@ def preview_platform(platform):
 
 @app.route('/delete_<platform>', methods=['POST'])
 def delete_platform(platform):
-    # todo: hanldle errors
-    # handle GET method (using browser)
+    """ delete the posts and comments previewed """
+    # todo: hanldle error if code not found
+    # todo: handle GET method (using browser)
     if (platform == 'reddit'):
         for comment in preview['reddit']['comment']:
             comment.delete()
@@ -108,4 +113,5 @@ def delete_platform(platform):
 
 
 if __name__ == '__main__':
+    """ Main Function """
     app.run(port=8080)

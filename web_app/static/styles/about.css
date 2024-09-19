@@ -1,0 +1,195 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+header {
+    background-color: rgba(48, 0, 117, 0.85);
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Pacifico', cursive;
+}
+
+.nav-links {
+    list-style-type: none;
+}
+
+.nav-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffab00;
+}
+
+/* Hero Section */
+.hero {
+    height: 53vh;
+    background: linear-gradient(135deg, #1b263b 0%, #8e24aa 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+/* Features Section */
+.features {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.features h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 18px;
+    color: #666;
+}
+
+.features ul li {
+    margin: 10px 0;
+}
+
+/* About Section */
+.about {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f0f4f8;
+}
+
+.about h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Team Section */
+.team {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.team h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.team-member {
+    margin-bottom: 30px;
+}
+
+.team-member h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+.team-member ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-member ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.team-member ul li a {
+    color: #8e24aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.team-member ul li a:hover {
+    text-decoration: underline;
+}
+
+/* GitHub Section */
+.github {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f0f4f8;
+}
+
+.github h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.github a {
+    color: #8e24aa;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.github a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
